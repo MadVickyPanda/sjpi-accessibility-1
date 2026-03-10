@@ -27,8 +27,7 @@ Det finns många sätt att göra en webbplats mer tillgänglig, till exempel att
 -->
 
 <!DOCTYPE html>
-<!-- Vad händer när man kommenterar bort språket? -->
-<!-- <html lang="en"> -->
+<html lang="sv">
 
 <head>
     <meta charset="UTF-8">
@@ -36,23 +35,23 @@ Det finns många sätt att göra en webbplats mer tillgänglig, till exempel att
     <link rel="stylesheet" href="style.css">
     <!-- Endast en `<title>` används; flera kan orsaka oväntat beteende och påverka SEO samt tillgänglighet negativt. -->
     <title>A11y News</title>
-    <title>A11y News dupe</title>
 </head>
 
 <body>
     <!-- Navigeringsmeny med dubblett-ID:n, inkonsekvent tabindex, och brutna länkar till en 404-sida. -->
     <nav class="navigation">
-        <span class="nav-item" id="1" tabindex="-1"><a href="404.html" target="_blank">Home</a></span>
-        <span class="nav-item" id="1" tabindex="-1"><a href="404.html">World</a></span>
-        <span class="nav-item" id="1"><a href="404.html">Sports</a></span>
-        <span class="nav-item" id="1"><a href="404.html" target="_blank">Entertainment</a></span>
+        <span class="nav-item" id="1"><a href="index.html">Home</a></span>
+        <span class="nav-item" id="2"><a href="world.html">World</a></span>
+        <span class="nav-item" id="3"><a href="sports.html">Sports</a></span>
+        <span class="nav-item" id="4"><a href="entertainment.html">Entertainment</a></span>
     </nav>
 
     <!-- Svåråtkomligt inputfällt -->
-    <div class="input-container">
-        <input type="text" placeholder="Enter text">
-        <button><a href="#">Search</a></button>
-    </div>
+    <form class="input-container" role="search">
+  <label for="search">Search</label>
+  <input id="search" type="text" name="search" placeholder="Enter text">
+  <button type="submit">Search</button>
+</form>
 
     <!-- Dold text och klickbar div. 
      .hidden-text är nästan osynlig p.g.a. låg opacity och roterad tex -->
