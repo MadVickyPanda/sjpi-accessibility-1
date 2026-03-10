@@ -1,31 +1,3 @@
-<!-- 
-The A11Y Project är ett community-drivet initiativ som strävar efter att göra digital tillgänglighet enklare, 
-mer begriplig och lättare att implementera för alla.
-
-Läs lite om projektet:
-https://www.a11yproject.com/about/
-
-
-Tillgänglighet är en viktig del av webbutveckling. Det handlar om att göra webbplatser och appar tillgängliga för alla, inklusive personer med funktionsnedsättningar. 
-Det finns många sätt att göra en webbplats mer tillgänglig, till exempel att använda semantisk HTML, skapa enkel navigering och använda alternativa texter för bilder.
- ____________________________________________________________________________________________________
- 1. Läs noga genom koden och identifiera alla tillgänglighetsproblem.
- 
- 2. Testa kör lighthouse i devtools(Google chrome) och se vilka problem som finns.
-
- 3. Skriv en kort sammanfattning av vad som är fel och hur det kan åtgärdas.
-
- 4. Skriv om koden så att den följer tillgänglighetsstandarder.
-
- 5. Skriv en kort sammanfattning av vad du har ändrat och varför.
-
- 6. Testa din nya kod med andra verktyg för tillgänglighet.
-
- 7. Skriv en kort reflektion över hur det var att göra uppgiften. Vad var svårt? Vad lärde du dig?
- ____________________________________________________________________________________________________
-
--->
-
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -33,84 +5,81 @@ Det finns många sätt att göra en webbplats mer tillgänglig, till exempel att
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- Endast en `<title>` används; flera kan orsaka oväntat beteende och påverka SEO samt tillgänglighet negativt. -->
     <title>A11y News</title>
 </head>
 
 <body>
-    <!-- Navigeringsmeny med dubblett-ID:n, inkonsekvent tabindex, och brutna länkar till en 404-sida. -->
-    <nav class="navigation">
-        <span class="nav-item" id="1"><a href="index.html">Home</a></span>
-        <span class="nav-item" id="2"><a href="world.html">World</a></span>
-        <span class="nav-item" id="3"><a href="sports.html">Sports</a></span>
-        <span class="nav-item" id="4"><a href="entertainment.html">Entertainment</a></span>
-    </nav>
+    <header>
+        <nav class="navigation" aria-label="Huvudmeny">
+            <a id="nav1" href="index.html">Home</a>
+            <a id="nav2" href="world.html">World</a>
+            <a id="nav3" href="sports.html">Sports</a>
+            <a id="nav4" href="entertainment.html">Entertainment</a>
+        </nav>
 
-    <!-- Svåråtkomligt inputfällt -->
-    <form class="input-container" role="search">
-  <label for="search">Search</label>
-  <input id="search" type="text" name="search" placeholder="Enter text">
-  <button type="submit">Search</button>
-</form>
+        <form class="input-container" role="search" aria-label="Sök på sidan">
+            <label for="search">Search</label>
+            <input id="search" type="text" name="search" placeholder="Enter text">
+            <button type="submit">Search</button>
+        </form>
+    </header>
 
-   
-
-        <!-- Två <h1>-taggar i .container kan påverka tillgänglighet och SEO. -->
-        <h2>A11y News</h2>
-        
+    <main>
+        <h1>A11y News</h1>
 
         <article class="article">
-    <h2 class="headline">Breaking News</h2>
+            <h2>Breaking News</h2>
+            <p>
+                Scientists have discovered a new deep-sea fish with bioluminescent fins off the coast of Australia.
+                The unnamed species may contribute to future medical research and biotechnology.
+            </p>
+            <a href="news-deep-sea-fish.html">Read more about the deep-sea fish discovery</a>
+        </article>
 
-    <p>
-        Scientists have discovered a new deep-sea fish with bioluminescent fins off the coast of Australia.
-        The unnamed species may contribute to future medical research and biotechnology.
-    </p>
+        <article class="article">
+            <h2>Lunar New Year: Celebrate with us!</h2>
+            <button type="button" aria-label="Show Lunar New Year message">Show message</button>
+        </article>
 
-    <a href="news-deep-sea-fish.html">Read more about the deep-sea fish discovery</a>
-</article>
+        <section class="image-container" aria-label="Bildgalleri">
+            <figure>
+                <img src="/images/ocean.jpg" alt="Rolling ocean wave" width="150" height="150">
+                <figcaption>Ocean</figcaption>
+            </figure>
 
-        <!-- Klicka på artikeln för att visa ett meddelande, men den utför egentligen inget. -->
-        <div class="article" onclick="alert('This does nothing!')">
-            <div>Lunar New Year: Celebrate with us!</div>
+            <figure>
+                <img src="/images/city.jpg" alt="Aerial view of a city at sunset" width="150" height="150">
+                <figcaption>City at sunset</figcaption>
+            </figure>
 
-            <!-- Bilder visas inte, varför? -->
-            <div class="image-container">
-                <img src="/images/ocean.jpg">
-                <img src="/images/city.jpg">
-                <img src="/images/family.jpg">
-            </div>
+            <figure>
+                <img src="/images/family.jpg" alt="Two hands holding a yellow sign that says 'Family'" width="150"
+                    height="150">
+                <figcaption>Family</figcaption>
+            </figure>
+        </section>
 
-            <p>Access the news by pressing the images</p>
-        </div>
+        <article class="article">
+            <h2>Large Flower Image</h2>
+            <img src="/images/flower.jpg" alt="Close-up of a colorful flower" width="500">
+        </article>
 
-        <!-- Allt för stor bild. För att motverka prestanda problem, ha koll på storleken på bilden -->
-        <div class="article" style="display: none;">
-            <p class="headline">Se en 50MB bild ladda långsamt!</p>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg" width="50000">
-        </div>
+        <article class="article">
+            <h2>Sample Video and GIF</h2>
+            <video controls width="500">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Din webbläsare stödjer inte videon.
+                <track src="/captions/mov_bbb.vtt" kind="captions" srclang="sv" label="Svenska">
+            </video>
 
-        <!-- Videor kräver mycket prestanda, kan vi ändra eller ta bort för att åstakomma bättre resultat -->
-        <div class="article">
-            <video autoplay muted loop src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-            <img src="http://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
-        </div>
-    </div>
+            <img src="http://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"
+                alt="Funny animated GIF of dancing character" width="300">
+        </article>
+    </main>
 
-    <!-- En irriterande annons som alltid syns och innehåller en snurrande bild samt en vilseledande text -->
-    <div id="fake-ad">
-        <div class="top-section">
-            <div class="image-container">
-                <img class="rotating-image" src="images/chest.png">
-            </div>
-            <p>🎉 You have won $10,000! 🎉</p>
-            <div class="image-container">
-                <img class="rotating-image" src="images/chest.png">
-            </div>
-        </div>
-        <p class="btext">Click here to collect your money!</p>
-    </div>
-
+    <footer>
+        <p>&copy; 2026 A11y News – All rights reserved.</p>
+    </footer>
 
     <script src="script.js" defer></script>
 </body>
